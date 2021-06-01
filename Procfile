@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run main.py
+web:sudo apt install libgl1-mesa-glx && sh setup.sh && streamlit run main.py
