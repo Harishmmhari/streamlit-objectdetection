@@ -19,7 +19,7 @@ modelname = st.sidebar.selectbox(
 
 webcam=st.button("webcam")
 
-
+st.write("webcam status :"+str("ON"if webcam else "OFF"))
 
 
 
@@ -42,7 +42,7 @@ if modelname=='ssd':
         conf=st.slider("confidence value",min_value=0.00,max_value=1.00,value=0.20,step=0.05)
 
 
-        if webcam or file.type[0:5]=='video':
+        if webcam or (file!=None and file.type[0:5]=='video'):
             if webcam:
                 vf=cv2.VideoCapture(0)
             elif file.type[0:5]=='video':
@@ -174,14 +174,14 @@ if modelname=='maskrnn':
     configPath ="mask_rcnn_inception_v2_coco_2018_01_28.pbtxt"
     if Path("frozen_inference_graph.pb").is_file() and Path("mask_rcnn_inception_v2_coco_2018_01_28.pbtxt").is_file():
         netmask=cv2.dnn.readNetFromTensorflow(weightsPath, configPath)
-
+        print(netmask,"network")
 
 
         st.write("maskrnn loaded")
         conf=st.slider("confidence value",min_value=0.00,max_value=1.00,value=0.20,step=0.05)
         thresh=st.slider("threshold value",min_value=0.00,max_value=1.00,value=0.20,step=0.05)
 
-        if webcam or file.type[0:5]=='video':
+        if webcam or (file!=None and file.type[0:5]=='video'):
             if webcam:
                 vf=cv2.VideoCapture(0)
             elif file.type[0:5]=='video':
@@ -196,7 +196,7 @@ if modelname=='maskrnn':
             while True:
         # read the next frame from the file
                 (grabbed, frame) = vf.read()
-                print(frame)
+                #print(frame)
                 # if the frame was not grabbed, then we have reached the end
                 # of the stream
                 if not grabbed:
@@ -208,6 +208,7 @@ if modelname=='maskrnn':
                 # pixel-wise segmentation for each specific object
                 blob = cv2.dnn.blobFromImage(frame, swapRB=True, crop=False)
                 netmask.setInput(blob)
+                print("blob",blob)
                 (boxes, masks) = netmask.forward(["detection_out_final",
                                               "detection_masks"])
 
@@ -336,7 +337,7 @@ if modelname=='maskrnn':
                         text = "{}: {:.4f}".format(LABELS[classID], confidence)
                         cv2.putText(frame, text, (startX, startY - 5),
                                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
-                        k.image(frame)
+                        k.image(cv2.cvtColor(frame,"blue"))
                         st.write(text)
 
                         #print("frame got")
