@@ -12,6 +12,7 @@ streamlit run main.py
 
 then this popups
 -----------todo add open page screenshoot
+https://github.com/Harishmmhari/streamlit-objectdetection/blob/main/openpage.png
 then you can select required video or image u want to recognize
 even you can you webcam as source by clicking web cam button
 
