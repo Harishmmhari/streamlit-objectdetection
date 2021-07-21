@@ -12,12 +12,12 @@ streamlit run main.py
 
 then this popups
 ![home page of app](https://github.com/Harishmmhari/streamlit-objectdetection/blob/main/openpage.png)
-https://github.com/Harishmmhari/streamlit-objectdetection/blob/main/openpage.png
+
 then you can select required video or image u want to recognize
 even you can you webcam as source by clicking web cam button
 
 here is some examples
-## maskrnn
+## maskRNN
   this is model built to idetifiy the object and its proability of presence of that object in specific pixel
   this model's base architecture is RNN and CNN both 
   so there is two key parameters we have set to tune the output in this
@@ -27,7 +27,7 @@ here is some examples
   2.threshold
        this value gives to compute the proablity of each pixel in that box(a rectangle produced by taking confidence value to consideration)
        whether that pixel contains specific object detected.if that proabilty is more than threshold than it is masked output is asshoem below
-
+![maskrnn example](https://github.com/Harishmmhari/streamlit-objectdetection/blob/main/maskrnn.png)
 
 
 
@@ -35,7 +35,7 @@ here is some examples
 ## ssd
   this is small model which detects object as it is trained with very less classes and it has very small architecture compare to other models like(yolo,maskrnn)
   outputs are shown below
-  
+  ![ssd example](https://github.com/Harishmmhari/streamlit-objectdetection/blob/main/ssd.png)
   
   
   
